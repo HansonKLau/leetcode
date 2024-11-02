@@ -18,32 +18,51 @@ class Solution {
 
         Stack<Character> charStack = new Stack<>();
 
-        List<Character> open = Arrays.asList('(', '{', '[');
-        List<Character> close = Arrays.asList(')', '}', ']');
-
-        HashMap<Character, Character> mapping = new HashMap<>();
-
-        for (int i = 0; i < open.size(); i++) {
-            mapping.put(open.get(i), close.get(i));
-        }
-
         for (int i = 0; i < s.length(); i++) {
 
-            char currentChar = s.charAt(i);
-            if (open.contains(currentChar)) {
-                charStack.add(currentChar);
-            }
+            char currChar = s.charAt(i);
 
-            else if (close.contains(currentChar)) {
-                if (charStack.isEmpty() || currentChar != mapping.get(charStack.peek())) {
-                    return false;
-                } else {
+            switch (currChar) {
+
+                case '(':
+
+                case '[':
+
+                case '{':
+
+                    charStack.push(currChar);
+                    break;
+                
+                case ')':
+
+                    if (charStack.isEmpty() || charStack.peek() != '(') {
+                        return false;
+                    } 
+
                     charStack.pop();
-                }
-            }
+                    break;
+                
+                case ']':
 
+                    if (charStack.isEmpty() || charStack.peek() != '[') {
+                        return false;
+                    }
+
+                    charStack.pop();
+                    break;
+
+                case '}':
+
+                    if (charStack.isEmpty() || charStack.peek() != '{') {
+                        return false;
+                    }
+
+                    charStack.pop();
+                    break;
+            }
         }
 
-        return charStack.isEmpty();
+        return charStack.empty();
+
     }
 }
