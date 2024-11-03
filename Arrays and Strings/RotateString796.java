@@ -16,10 +16,6 @@ class Solution {
             return false;
         }
 
-        if ((s+s).contains(goal)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (s+s).contains(goal);
     }
 }
