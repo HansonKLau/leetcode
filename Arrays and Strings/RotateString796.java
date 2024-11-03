@@ -12,18 +12,14 @@ public class RotateString796 {
 class Solution {
     public boolean rotateString(String s, String goal) {
 
-        // StringBuilder rotatingString = new StringBuilder(s);
-
-        for (int i = 0; i < s.length(); i++) {
-
-            if (s.equals(goal)) {
-                return true;
-            } else {
-
-                s = s.substring(1) + s.charAt(0);
-
-            }
+        if (s.length() != goal.length()) {
+            return false;
         }
-        return false;
+
+        if ((s+s).contains(goal)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
